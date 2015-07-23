@@ -15,11 +15,10 @@ public class ApplicationContext {
 
     private Map<Class<? extends Controller>, String> controllerMap = Maps.newHashMap();
 
-    @SuppressWarnings("unchecked")
     public ApplicationContext() throws IOException {
         readUrlMap().forEach((key, value) -> {
             try {
-                controllerMap.put(getControllerClass(key.toString()), value.toString());
+                controllerMap.put(getControllerClass(key), value);
             } catch(ClassNotFoundException e) {
                 throw new IllegalStateException(String.format("Invalid Controller name called key=%s", key));
             }
@@ -27,11 +26,7 @@ public class ApplicationContext {
     }
 
     @SuppressWarnings("unchecked")
-    private Class<? extends Controller> getControllerClass(String name) throws ClassNotFoundException {
-        return (Class<? extends Controller>) Class.forName(String.format("%s.%s", getControllerPackage(), name));
-    }
-
-    private Map readUrlMap() throws IOException {
+    private Map<String, String> readUrlMap() throws IOException {
         InputStream inputStream = null;
         try {
             inputStream = getResourcesAsInputStream("/url_mapping.yaml");
@@ -39,6 +34,11 @@ public class ApplicationContext {
         } finally {
             IOUtils.closeQuietly(inputStream);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    private Class<? extends Controller> getControllerClass(String name) throws ClassNotFoundException {
+        return (Class<? extends Controller>) Class.forName(String.format("%s.%s", getControllerPackage(), name));
     }
 
     public String getControllerPackage() {

@@ -11,9 +11,8 @@ import org.reflections.Reflections;
 public class Router {
 
     public void setup(ApplicationContext context) throws Exception {
-        new Reflections(context.getControllerPackage()).getSubTypesOf(Controller.class)
+        new Reflections(context.getControllerPackage()).getSubTypesOf(AbstractController.class)
                 .stream()
-                .filter((controller) -> !controller.equals(AbstractController.class))
                 .map((controller) -> createController(context, controller))
                 .forEach(Controller::setupRoutes);
     }
