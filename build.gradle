@@ -19,6 +19,16 @@ repositories {
 }
 
 dependencies {
+    // framework
     compile 'com.sparkjava:spark-core:2.2'
+
+    // commons
+    compile 'com.google.guava:guava:18.0'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.reflections:reflections:0.9.10'
+    compile 'org.yaml:snakeyaml:1.15'
+
+    // test
     testCompile 'junit:junit:4.11'
 }
