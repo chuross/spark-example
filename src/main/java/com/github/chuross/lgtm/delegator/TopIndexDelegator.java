@@ -21,7 +21,7 @@ public class TopIndexDelegator extends AbstractMustacheTemplateDelegator<TopCont
     }
 
     @Override
-    protected Map<String, Object> getModel(final Request request, final Response response) {
+    protected Map<String, Object> getModel(final TopController controller, final Request request, final Response response) {
         return null;
     }
 }
