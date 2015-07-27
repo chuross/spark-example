@@ -1,6 +1,14 @@
 package com.github.chuross.lgtm.view;
 
-public interface View {
+public class View {
 
-    String getName();
+    private String name;
+
+    public View(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

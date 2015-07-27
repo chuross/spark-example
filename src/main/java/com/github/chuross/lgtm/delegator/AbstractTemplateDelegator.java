@@ -4,7 +4,6 @@ import com.github.chuross.lgtm.ApplicationException;
 import com.github.chuross.lgtm.Method;
 import com.github.chuross.lgtm.ModelAndView;
 import com.github.chuross.lgtm.controller.Controller;
-import com.github.chuross.lgtm.view.View;
 import spark.Filter;
 import spark.Request;
 import spark.Response;
@@ -12,15 +11,15 @@ import spark.Spark;
 
 import java.util.Map;
 
-public abstract class AbstractTemplateDelegator<CONTROLLER extends Controller, VIEW extends View> implements TemplateDelegator<CONTROLLER, VIEW> {
-
-    protected Filter getFilter() {
-        return null;
-    }
+public abstract class AbstractTemplateDelegator<CONTROLLER extends Controller> implements TemplateDelegator<CONTROLLER> {
 
     protected abstract Method getMethod();
 
     protected abstract Map<String, Object> getModel(CONTROLLER controller, Request request, Response response);
+
+    protected Filter getFilter() {
+        return null;
+    }
 
     @Override
     public void delegate(final CONTROLLER controller) {

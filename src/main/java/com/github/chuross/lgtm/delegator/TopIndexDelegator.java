@@ -2,17 +2,17 @@ package com.github.chuross.lgtm.delegator;
 
 import com.github.chuross.lgtm.Method;
 import com.github.chuross.lgtm.controller.TopController;
-import com.github.chuross.lgtm.view.TopView;
+import com.github.chuross.lgtm.view.View;
 import spark.Request;
 import spark.Response;
 
 import java.util.Map;
 
-public class TopIndexDelegator extends AbstractMustacheTemplateDelegator<TopController, TopView> {
+public class TopIndexDelegator extends AbstractMustacheTemplateDelegator<TopController> {
 
     @Override
-    public TopView getView() {
-        return new TopView();
+    public View getView() {
+        return new View("top/index.mustache");
     }
 
     @Override

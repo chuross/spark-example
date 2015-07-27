@@ -4,9 +4,9 @@ import com.github.chuross.lgtm.controller.Controller;
 import com.github.chuross.lgtm.view.View;
 import spark.TemplateEngine;
 
-public interface TemplateDelegator<CONTROLLER extends Controller, VIEW extends View> extends Delegator<CONTROLLER> {
+public interface TemplateDelegator<CONTROLLER extends Controller> extends Delegator<CONTROLLER> {
 
-    VIEW getView();
+    View getView();
 
     TemplateEngine getTemplateEngine();
 }
