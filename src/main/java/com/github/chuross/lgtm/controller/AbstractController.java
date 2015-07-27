@@ -10,7 +10,8 @@ public abstract class AbstractController implements Controller {
         this.context = context;
     }
 
-    protected ApplicationContext getContext() {
+    @Override
+    public ApplicationContext getApplicationContext() {
         return context;
     }
 

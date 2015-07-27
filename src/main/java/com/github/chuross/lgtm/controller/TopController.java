@@ -1,7 +1,7 @@
 package com.github.chuross.lgtm.controller;
 
 import com.github.chuross.lgtm.ApplicationContext;
-import spark.Spark;
+import com.github.chuross.lgtm.delegator.TopIndexDelegator;
 
 public class TopController extends AbstractController {
 
@@ -10,7 +10,7 @@ public class TopController extends AbstractController {
     }
 
     @Override
-    public void setupRoutes() {
-        Spark.get(getPath(), ((request, response) -> "test"));
+    public void setup() {
+        new TopIndexDelegator().delegate(this);
     }
 }

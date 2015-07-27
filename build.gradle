@@ -21,6 +21,7 @@ repositories {
 dependencies {
     // framework
     compile 'com.sparkjava:spark-core:2.2'
+    compile 'com.sparkjava:spark-template-mustache:1.0.0'
 
     // commons
     compile 'com.google.guava:guava:18.0'

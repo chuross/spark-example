@@ -1,2 +1,3 @@
 TopController: /
-# ImageController: /images/{:image_id}
+# ImageListController: /images
+# ImageDetailController: /images/{:image_id}

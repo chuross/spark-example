@@ -6,15 +6,16 @@ import org.apache.commons.lang3.reflect.ConstructorUtils;
 import org.reflections.Reflections;
 
 /**
- * 対象パッケージのControllerから振り分け処理を行うためのクラス
+ * 対象パッケージのControllerを呼び出して振り分け処理を行うためのクラス
  */
 public class Router {
 
     public void setup(ApplicationContext context) throws Exception {
-        new Reflections(context.getControllerPackage()).getSubTypesOf(AbstractController.class)
+        new Reflections(context.getControllerPackage())
+                .getSubTypesOf(AbstractController.class)
                 .stream()
                 .map((controller) -> createController(context, controller))
-                .forEach(Controller::setupRoutes);
+                .forEach(Controller::setup);
     }
 
     private static Controller createController(ApplicationContext context, Class<? extends Controller> controller) {
