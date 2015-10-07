@@ -4,7 +4,6 @@ import com.github.chuross.lgtm.Method;
 import com.github.chuross.lgtm.controller.TopController;
 import com.github.chuross.lgtm.view.View;
 import spark.Request;
-import spark.Response;
 
 import java.util.Map;
 
@@ -21,7 +20,7 @@ public class TopIndexDelegator extends AbstractMustacheTemplateDelegator<TopCont
     }
 
     @Override
-    protected Map<String, Object> getModel(final TopController controller, final Request request, final Response response) {
+    protected Map<String, Object> getModel(TopController controller, final Request request) {
         return null;
     }
 }

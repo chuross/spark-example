@@ -6,7 +6,6 @@ import com.github.chuross.lgtm.ModelAndView;
 import com.github.chuross.lgtm.controller.Controller;
 import spark.Filter;
 import spark.Request;
-import spark.Response;
 import spark.Spark;
 
 import java.util.Map;
@@ -15,43 +14,44 @@ public abstract class AbstractTemplateDelegator<CONTROLLER extends Controller> i
 
     protected abstract Method getMethod();
 
-    protected abstract Map<String, Object> getModel(CONTROLLER controller, Request request, Response response);
+    protected abstract Map<String, Object> getModel(CONTROLLER controller, Request request);
 
-    protected Filter getFilter() {
+    protected Filter getFilter(CONTROLLER controller) {
         return null;
     }
 
     @Override
     public void delegate(final CONTROLLER controller) {
-        if(getFilter() != null) {
+        Filter filter = getFilter(controller);
+        if(filter != null) {
             Spark.before(controller.getPath(), ((request, response) -> {
                 if(!request.requestMethod().equals(getMethod().name())) {
                     return;
                 }
-                getFilter().handle(request, response);
+                filter.handle(request, response);
             }));
         }
         switch(getMethod()) {
             case GET:
-                Spark.get(controller.getPath(), (request, response) -> getModelAndView(controller, request, response), getTemplateEngine());
+                Spark.get(controller.getPath(), (request, response) -> getModelAndView(controller, request), getTemplateEngine());
                 break;
             case POST:
-                Spark.post(controller.getPath(), (request, response) -> getModelAndView(controller, request, response), getTemplateEngine());
+                Spark.post(controller.getPath(), (request, response) -> getModelAndView(controller, request), getTemplateEngine());
                 break;
             case PUT:
-                Spark.put(controller.getPath(), (request, response) -> getModelAndView(controller, request, response), getTemplateEngine());
+                Spark.put(controller.getPath(), (request, response) -> getModelAndView(controller, request), getTemplateEngine());
                 break;
             case DELETE:
-                Spark.delete(controller.getPath(), (request, response) -> getModelAndView(controller, request, response), getTemplateEngine());
+                Spark.delete(controller.getPath(), (request, response) -> getModelAndView(controller, request), getTemplateEngine());
                 break;
             default:
                 throw new IllegalArgumentException("invalid method");
         }
     }
 
-    private ModelAndView getModelAndView(CONTROLLER controller, Request request, Response response) throws ApplicationException {
+    private ModelAndView getModelAndView(CONTROLLER controller, Request request) throws ApplicationException {
         try {
-            return new ModelAndView(getModel(controller, request, response), getView());
+            return new ModelAndView(getModel(controller, request), getView());
         } catch(Exception e) {
             throw new ApplicationException(e);
         }
