@@ -1,8 +1,8 @@
 package com.github.chuross.lgtm.controller;
 
 import com.github.chuross.lgtm.ApplicationContext;
-import com.github.chuross.lgtm.delegator.Delegator;
-import com.github.chuross.lgtm.delegator.TopIndexDelegator;
+import com.github.chuross.lgtm.controller.delegator.Delegator;
+import com.github.chuross.lgtm.controller.delegator.TopIndexDelegator;
 
 public class TopController extends AbstractController {
 

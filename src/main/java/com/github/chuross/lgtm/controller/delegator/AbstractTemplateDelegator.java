@@ -1,4 +1,4 @@
-package com.github.chuross.lgtm.delegator;
+package com.github.chuross.lgtm.controller.delegator;
 
 import com.github.chuross.lgtm.ApplicationException;
 import com.github.chuross.lgtm.Method;
