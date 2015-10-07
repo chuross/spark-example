@@ -1,4 +1,4 @@
-package com.github.chuross.lgtm.controller;
+package com.github.chuross.lgtm.controller.result;
 
 import java.util.Map;
 
@@ -9,5 +9,7 @@ public interface Result {
 
     int getStatus();
 
-    Map<String, Object> getProperties();
+    String getContentType();
+
+    Map<String, String> getHeaders();
 }

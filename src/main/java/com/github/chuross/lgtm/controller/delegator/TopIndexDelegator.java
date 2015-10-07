@@ -1,9 +1,8 @@
 package com.github.chuross.lgtm.controller.delegator;
 
 import com.github.chuross.lgtm.Method;
-import com.github.chuross.lgtm.controller.DefaultResult;
-import com.github.chuross.lgtm.controller.Result;
 import com.github.chuross.lgtm.controller.TopController;
+import com.github.chuross.lgtm.controller.result.TemplateResult;
 import com.github.chuross.lgtm.view.View;
 import spark.Request;
 
@@ -22,8 +21,8 @@ public class TopIndexDelegator extends AbstractTemplateDelegator<TopController> 
     }
 
     @Override
-    protected Result getResult(final TopController controller, final Request request) {
-        // new DefaultResult(model.getProperties());
-        return new DefaultResult();
+    protected TemplateResult getResult(final TopController controller, final Request request) {
+        // new TemplateResult(200, null, model.getProperties());
+        return new TemplateResult();
     }
 }
