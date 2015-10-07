@@ -1,5 +1,8 @@
 package com.github.chuross.lgtm.view;
 
+/**
+ * Viewを表示するための情報を持つクラス
+ */
 public class View {
 
     private String name;

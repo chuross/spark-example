@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class ModelAndView extends spark.ModelAndView {
 
-    public ModelAndView(final Map<String, Object> model, final View view) {
-        super(model, view.getName());
+    public ModelAndView(final Map<String, Object> properties, final View view) {
+        super(properties, view.getName());
     }
 }

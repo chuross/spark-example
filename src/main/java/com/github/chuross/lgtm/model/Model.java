@@ -7,8 +7,9 @@ import java.util.Map;
 
 /**
  * リクエストの内容を見てViewに渡すデータを生成するためのクラス
+ * DBやRedisなどの永続化層への参照はこのクラスが担当する
  */
 public interface Model {
 
-    Map<String, Object> get(ApplicationContext context, Request request) throws Exception;
+    Map<String, Object> getProperties(ApplicationContext context, Request request) throws Exception;
 }
